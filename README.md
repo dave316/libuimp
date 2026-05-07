@@ -1,5 +1,5 @@
 # C++ Unity Importer
-This is a importer for importing GameObjects and Components from a Unity scene file. It parses the scene file and loads all references meshes, textures and other objects in memory. From there you can create your own graphic objects for you renderer. 
+This is a importer for importing GameObjects and Components from a Unity scene file. It parses the scene file and loads all references meshes, textures and other objects in memory. From there you can create your own graphic objects for your renderer. 
 
 ## Dependencies
 - assimp: import over 40 3D file formats
