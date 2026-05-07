@@ -11,12 +11,12 @@ This is a importer for importing GameObjects and Components from a Unity scene f
 - tinyexr: import EXR image files
 
 ## Installation
-Installation was tested on Win10 x64 with Visual Studio 2017 and 2019. It's recommended to use VCPKG for installation.
+Installation was tested on Win10/Win11 x64 with Visual Studio 2022/2026. It's recommended to use VCPKG for installation.
 
 Requirenments: 
 - CMake
 - Git
-- Visual Studio 2017 or 2019
+- Visual Studio 2022 or later
 
 ### Build dependencies
 Download and install [VCPKG](https://github.com/microsoft/vcpkg). Set environment variable VCPKG_DEFAULT_TRIPLET=x64-windows.
@@ -28,8 +28,8 @@ Install dependencies:
 
 ### Building
 Open CMake-GUI
-- set source path to ./PhotonRenderer/
-- set build path to ./PhotonRenderer/build
+- set source path to ./libuimp/
+- set build path to ./libuimp/build
 - press configure and select your visual studio version and the platform x64
 - select specify toolchain file for cross-compiling
 - set toolchain file to: <vcpkg_root>/scripts/buildsystems/vcpkg.cmake
