@@ -1132,8 +1132,9 @@ namespace Unity
 							int64 prefabID = yamlTransform->m_PrefabInstance.value.fileID;
 
 							auto childGO = instantiatePrefab(db, prefabID, guid);
-							auto childTransform = childGO->getComponent<Transform>();
+							childGO->setPrefab(true);
 
+							auto childTransform = childGO->getComponent<Transform>();
 							transform->addChild(childTransform);
 							//std::cout << "error: loading from prefab filed not implemented! (file: " << metadataDB[guid].filename << ")" << std::endl;
 						}
@@ -1143,6 +1144,8 @@ namespace Unity
 							int64 prefabID = yamlTransform->m_PrefabInstance.value.fileID;
 
 							auto childGO = loadPrefabInstance(db, prefabID, guid);
+							childGO->setPrefab(true);
+
 							auto childTransform = childGO->getComponent<Transform>();
 
 							for (auto [id, obj] : db.unityObjects)
@@ -1290,13 +1293,13 @@ namespace Unity
 
 		//scene->addRoot(traverse(1104400804, nullptr, db));
 
-		//scene->addRoot(traverse(61754045, nullptr, db));
+		scene->addRoot(traverse(61754045, nullptr, db));
 
-		for (auto&& [name, id] : rootNodes)
-		{
-			auto rootGO = traverse(id, nullptr, db);
-			scene->addRoot(rootGO);
-		}
+		//for (auto&& [name, id] : rootNodes)
+		//{
+		//	auto rootGO = traverse(id, nullptr, db);
+		//	scene->addRoot(rootGO);
+		//}
 
 		// TODO: parse scene hierarchy
 

@@ -39,10 +39,12 @@ namespace Unity
 			return nullptr;
 		}
 
-		std::string getName();
 		void setName(std::string name) { this->name = name; }
+		std::string getName();
 		void setActive(bool active);
 		bool isActive();
+		void setPrefab(bool prefab) { this->prefab = prefab; }
+		bool isPrefab() { return prefab; }
 
 		typedef std::shared_ptr<GameObject> Ptr;
 		static Ptr create(std::string name)
@@ -53,6 +55,7 @@ namespace Unity
 		unsigned int id;
 		static unsigned int globalIDCount;
 		bool active = true;
+		bool prefab = false;
 		std::string name = "";
 		std::map<std::type_index, Component::Ptr> components;
 	};
