@@ -186,8 +186,15 @@ namespace Unity
 
 		auto mf = rootGO->getComponent<Unity::MeshFilter>();
 		std::string rootName = "";
-		if (mf)
-			rootName = mf->getMesh()->getName();
+		//if (mf)
+		//{
+		//	rootName = mf->getMesh()->getName();
+		//}			
+		//else
+		{
+			int len = metaData.filename.find_last_of('.');
+			rootName = metaData.filename.substr(0, len);
+		}
 
 		auto fileIDMap = modelImporter->fileIDToRecycleName.value;
 		for (auto&& [id, name] : fileIDMap)
@@ -195,6 +202,8 @@ namespace Unity
 			if (name.compare("//RootNode") == 0 && !rootName.empty())
 				fileIDMap[id] = rootName;
 		}
+
+		rootGO->setName(rootName);
 
 		//std::cout << "-------------" << std::endl;
 		//std::cout << "loaded meshes" << std::endl;
@@ -238,7 +247,7 @@ namespace Unity
 			{
 				std::string goName = name;
 				if (name.compare("//RootNode") == 0)
-					goName = "RootNode";
+					goName = rootName;
 				if (nameToGameObject.find(goName) != nameToGameObject.end())
 					cache.fileIDToGameObject.insert(std::make_pair(id, nameToGameObject[goName]));
 			}
@@ -246,7 +255,7 @@ namespace Unity
 			{
 				std::string goName = name;
 				if (name.compare("//RootNode") == 0)
-					goName = "RootNode";
+					goName = rootName;
 				if (nameToTransform.find(goName) != nameToTransform.end())
 					cache.fileIDToTransform.insert(std::make_pair(id, nameToTransform[goName]));
 			}
@@ -1280,7 +1289,9 @@ namespace Unity
 		//scene->addRoot(traverse(380792123, nullptr));
 
 		//scene->addRoot(traverse(1104400804, nullptr, db));
-		
+
+		//scene->addRoot(traverse(61754045, nullptr, db));
+
 		for (auto&& [name, id] : rootNodes)
 		{
 			auto rootGO = traverse(id, nullptr, db);

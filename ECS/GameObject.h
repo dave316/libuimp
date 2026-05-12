@@ -40,6 +40,7 @@ namespace Unity
 		}
 
 		std::string getName();
+		void setName(std::string name) { this->name = name; }
 		void setActive(bool active);
 		bool isActive();
 
